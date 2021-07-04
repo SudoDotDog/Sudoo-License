@@ -4,4 +4,4 @@
  * @description Index
  */
 
-export * from "./license";
+export * from "./license-package";

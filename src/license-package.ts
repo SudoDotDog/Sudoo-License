@@ -17,8 +17,8 @@ export type LicensePackageOptions = {
 export const licensePackage = async (options: LicensePackageOptions): Promise<void> => {
 
     const appPath: string = Path.resolve(options.targetPath);
-    const licensePath: string = Path.join(__dirname, '..', 'LICENSE');
-    const packagePath: string = Path.join(__dirname, '..', 'package.json');
+    const licensePath: string = Path.resolve('LICENSE');
+    const packagePath: string = Path.resolve('package.json');
 
     const license: string = Fs.readFileSync(licensePath, 'utf8');
     Fs.writeFileSync(Path.join(appPath, 'LICENSE'), license, 'utf8');
