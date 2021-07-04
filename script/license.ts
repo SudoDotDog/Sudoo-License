@@ -18,7 +18,7 @@ const parent: any = JSON.parse(Fs.readFileSync(packagePath, 'utf8'));
 const appPackage: any = {
     name: parent.name,
     bin: {
-        "build-utils": "bin",
+        "license-package": "bin",
     },
     main: "index.js",
     version: parent.version,
@@ -34,6 +34,6 @@ const appPackage: any = {
 Fs.writeFileSync(Path.join(appPath, 'package.json'), JSON.stringify(appPackage, null, 2), 'utf8');
 Fs.writeFileSync(Path.join(appPath, 'bin'), [
     `#!/usr/bin/env node`, '',
-    `const spire = require('./cli.js').execute;`,
-    `spire(process.argv);`, '',
+    `const license = require('./cli.js').execute;`,
+    `license(process.argv);`, '',
 ].join('\n'));
