@@ -14,3 +14,22 @@ yarn add @sudoo/license --dev
 # Or
 npm install @sudoo/license --save-dev
 ```
+
+## CLI Usage
+
+```sh
+npx license-package license <PATH> --dependencies --peerDependencies
+```
+
+## Package Usage
+
+```ts
+import { licensePackage } from "@sudoo/license";
+
+licensePackage({
+    
+    targetPath: "Path",
+    dependencies: true,
+    peerDependencies: true,
+});
+```
