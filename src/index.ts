@@ -3,3 +3,5 @@
  * @namespace License
  * @description Index
  */
+
+export * from "./license";

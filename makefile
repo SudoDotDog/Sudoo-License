@@ -8,6 +8,9 @@ ts_node := node_modules/.bin/ts-node
 mocha := node_modules/.bin/mocha
 eslint := node_modules/.bin/eslint
 
+# Build function
+build_utils := node_modules/.bin/build-utils
+
 main: dev
 
 dev:
@@ -58,7 +61,7 @@ license: clean
 
 clean:
 	@echo "[INFO] Cleaning release files"
-	@NODE_ENV=development $(ts_node) script/clean-app.ts
+	@NODE_ENV=development $(build_utils) clean-path app
 
 publish: install tests lint license build
 	@echo "[INFO] Publishing package"

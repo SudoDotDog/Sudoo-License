@@ -16,10 +16,10 @@ type LicensePackageCommandOptions = {
     readonly peerDependencies: string;
 };
 
-coco.rootCommand(Command.root()
+coco.rootCommand(Command.create('license')
     .argument(Argument.create('targetPath'))
-    .option(Option.create('dependencies').boolean())
-    .option(Option.create('peerDependencies').boolean())
+    .option(Option.create('dependencies').optional().boolean())
+    .option(Option.create('peerDependencies').optional().boolean())
     .then(async (args: LicensePackageCommandOptions) => {
 
         const path: string = Path.resolve(args.path);
