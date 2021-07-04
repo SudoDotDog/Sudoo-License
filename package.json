@@ -1,0 +1,40 @@
+{
+  "name": "@sudoo/license",
+  "version": "1.0.0",
+  "description": "Package license tools",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SudoDotDog/Sudoo-License.git"
+  },
+  "author": "WMXPY",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SudoDotDog/Sudoo-License/issues"
+  },
+  "homepage": "https://github.com/SudoDotDog/Sudoo-License#readme",
+  "dependencies": {
+    "@sudoo/coco": "^1.8.5",
+    "@sudoo/io": "^1.8.0"
+  },
+  "devDependencies": {
+    "@sudoo/triforce": "^2.8.27"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/**/*.ts"
+    ],
+    "instrument": true,
+    "reporter": [
+      "json",
+      "text-summary"
+    ],
+    "report-dir": "coverage",
+    "sourceMap": true
+  }
+}
