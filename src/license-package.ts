@@ -12,6 +12,7 @@ export type LicensePackageOptions = {
     readonly targetPath: string;
     readonly dependencies: boolean;
     readonly peerDependencies: boolean;
+    readonly optionalDependencies: boolean;
 };
 
 export const licensePackage = async (options: LicensePackageOptions): Promise<void> => {
@@ -43,6 +44,9 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
     }
     if (options.peerDependencies || typeof parent.peerDependencies === 'object') {
         appPackage.peerDependencies = parent.peerDependencies ?? {};
+    }
+    if (options.optionalDependencies || typeof parent.optionalDependencies === 'object') {
+        appPackage.optionalDependencies = parent.optionalDependencies ?? {};
     }
 
     Fs.writeFileSync(Path.join(appPath, 'package.json'), JSON.stringify(appPackage, null, 2), 'utf8');
