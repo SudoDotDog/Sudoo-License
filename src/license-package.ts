@@ -40,10 +40,10 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
     };
 
     if (options.dependencies) {
-        appPackage.dependencies = parent.dependencies;
+        appPackage.dependencies = parent.dependencies ?? {};
     }
     if (options.peerDependencies) {
-        appPackage.peerDependencies = parent.peerDependencies;
+        appPackage.peerDependencies = parent.peerDependencies ?? {};
     }
 
     Fs.writeFileSync(Path.join(appPath, 'package.json'), JSON.stringify(appPackage, null, 2), 'utf8');
