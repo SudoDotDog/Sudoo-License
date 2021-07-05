@@ -24,7 +24,6 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
     Fs.writeFileSync(Path.join(appPath, 'LICENSE'), license, 'utf8');
 
     const parent: any = JSON.parse(Fs.readFileSync(packagePath, 'utf8'));
-
     const appPackage: any = {
 
         name: parent.name,
@@ -39,10 +38,10 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
         homepage: parent.homepage,
     };
 
-    if (options.dependencies) {
+    if (options.dependencies || typeof parent.dependencies === 'object') {
         appPackage.dependencies = parent.dependencies ?? {};
     }
-    if (options.peerDependencies) {
+    if (options.peerDependencies || typeof parent.peerDependencies === 'object') {
         appPackage.peerDependencies = parent.peerDependencies ?? {};
     }
 
