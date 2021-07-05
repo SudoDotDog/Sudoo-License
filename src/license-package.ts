@@ -10,6 +10,9 @@ import * as Path from 'path';
 export type LicensePackageOptions = {
 
     readonly targetPath: string;
+
+    readonly main: string;
+
     readonly dependencies: boolean;
     readonly peerDependencies: boolean;
     readonly optionalDependencies: boolean;
@@ -28,7 +31,7 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
     const appPackage: any = {
 
         name: parent.name,
-        main: "index.js",
+        main: options.main,
         version: parent.version,
         description: parent.description,
         repository: parent.repository,
