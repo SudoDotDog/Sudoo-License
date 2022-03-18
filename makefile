@@ -3,7 +3,7 @@ build := typescript/tsconfig.build.json
 dev := typescript/tsconfig.dev.json
 
 # NPX functions
-tsc := node_modules/.bin/typescript
+tsc := node_modules/.bin/tsc
 mocha := node_modules/.bin/mocha
 mocha-config := node_modules/@sudoo/mocha-config/.mocharc.json
 ts_node := node_modules/.bin/ts-node
