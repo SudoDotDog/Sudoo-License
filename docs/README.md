@@ -1,7 +1,7 @@
 # Sudoo-License
 
-[![Build Status](https://travis-ci.com/SudoDotDog/License.svg?branch=master)](https://travis-ci.com/SudoDotDog/License)
-[![codecov](https://codecov.io/gh/SudoDotDog/License/branch/master/graph/badge.svg)](https://codecov.io/gh/SudoDotDog/License)
+[![Continuous Integration](https://github.com/SudoDotDog/Sudoo-License/actions/workflows/ci.yml/badge.svg)](https://github.com/SudoDotDog/Sudoo-License/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/SudoDotDog/Sudoo-License/branch/master/graph/badge.svg)](https://codecov.io/gh/SudoDotDog/Sudoo-License)
 [![npm version](https://badge.fury.io/js/%40sudoo%2Flicense.svg)](https://www.npmjs.com/package/@sudoo/license)
 [![downloads](https://img.shields.io/npm/dm/@sudoo/license.svg)](https://www.npmjs.com/package/@sudoo/license)
 
