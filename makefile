@@ -4,11 +4,15 @@ dev := typescript/tsconfig.dev.json
 
 # NPX functions
 tsc := node_modules/.bin/tsc
-ts_node := node_modules/.bin/ts-node
+start-storybook := node_modules/.bin/start-storybook
+build-storybook := node_modules/.bin/build-storybook
 mocha := node_modules/.bin/mocha
+mocha-config := node_modules/@sudoo/mocha-config/.mocharc.json
+ts_node := node_modules/.bin/ts-node
 eslint := node_modules/.bin/eslint
+nyc := node_modules/.bin/nyc
 
-# Build function
+# Build functions
 build_utils := node_modules/.bin/build-utils
 
 main: dev
@@ -24,12 +28,12 @@ build:
 tests:
 	@echo "[INFO] Testing with Mocha"
 	@NODE_ENV=test \
-	$(mocha) --config test/.mocharc.json
+	$(mocha) --config $(mocha-config)
 
 cov:
 	@echo "[INFO] Testing with Nyc and Mocha"
 	@NODE_ENV=test \
-	nyc $(mocha) --config test/.mocharc.json
+	$(nyc) $(mocha) --config $(mocha-config)
 
 lint:
 	@echo "[INFO] Linting"
@@ -57,7 +61,7 @@ outdated: install
 
 license: clean
 	@echo "[INFO] Sign files"
-	@NODE_ENV=development $(ts_node) script/license.ts
+	@NODE_ENV=development $(license_package) license app
 
 clean:
 	@echo "[INFO] Cleaning release files"
@@ -70,3 +74,7 @@ publish: install tests lint license build
 publish-dry-run: install tests lint license build
 	@echo "[INFO] Publishing package"
 	@cd app && npm publish --access=public --dry-run
+
+ts-version:
+	@echo "[INFO] Getting TypeScript Version"
+	@NODE_ENV=development $(tsc) --version
