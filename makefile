@@ -59,7 +59,7 @@ outdated: install
 
 license: clean
 	@echo "[INFO] Sign files"
-	@NODE_ENV=development $(license_package) license app
+	@NODE_ENV=development $(ts_node) script/license.ts
 
 clean:
 	@echo "[INFO] Cleaning release files"
@@ -72,7 +72,3 @@ publish: install tests lint license build
 publish-dry-run: install tests lint license build
 	@echo "[INFO] Publishing package"
 	@cd app && npm publish --access=public --dry-run
-
-ts-version:
-	@echo "[INFO] Getting TypeScript Version"
-	@NODE_ENV=development $(tsc) --version
