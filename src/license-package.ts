@@ -6,6 +6,7 @@
 
 import * as Fs from 'fs';
 import * as Path from 'path';
+import { createBinScript } from './bin-script';
 
 export type LicensePackageOptions = {
 
@@ -50,6 +51,30 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
     }
     if (options.optionalDependencies || typeof parent.optionalDependencies === 'object') {
         appPackage.optionalDependencies = parent.optionalDependencies ?? {};
+    }
+
+    if (typeof parent.bin === 'object') {
+
+        const commands: string[] = Object.keys(parent.bin);
+
+        if (commands.length > 0) {
+
+            const packageBinProperty: Record<string, string> = {};
+
+            for (const command of commands) {
+
+                const commandName: string = command;
+                const commandTargetFileName: string = parent.bin[command];
+                const commandBinFileName: string = `${commandName}-bin`;
+
+                const script: string = createBinScript(commandTargetFileName);
+
+                Fs.writeFileSync(Path.join(appPath, commandBinFileName), script);
+                packageBinProperty[commandName] = commandBinFileName;
+            }
+
+            appPackage.bin = packageBinProperty;
+        }
     }
 
     Fs.writeFileSync(Path.join(appPath, 'package.json'), JSON.stringify(appPackage, null, 2), 'utf8');
