@@ -24,6 +24,7 @@ type LicensePackageCommandOptions = {
 coco.command(Command.create('license')
     .argument(Argument.create('targetPath'))
     .option(Option.create('main').optional())
+    .option(Option.create('rawExecutable').optional().boolean())
     .option(Option.create('dependencies').optional().boolean())
     .option(Option.create('peerDependencies').optional().boolean())
     .option(Option.create('optionalDependencies').optional().boolean())
@@ -36,6 +37,7 @@ coco.command(Command.create('license')
 
             main: args.main ?? 'index.js',
 
+            rawExecutable: false,
             dependencies: args.dependencies === 'true',
             peerDependencies: args.peerDependencies === 'true',
             optionalDependencies: args.optionalDependencies === 'true',
