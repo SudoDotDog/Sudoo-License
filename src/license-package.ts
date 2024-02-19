@@ -14,6 +14,7 @@ export type LicensePackageOptions = {
 
     readonly main: string;
 
+    readonly rawExecutable: boolean;
     readonly dependencies: boolean;
     readonly peerDependencies: boolean;
     readonly optionalDependencies: boolean;
@@ -53,7 +54,13 @@ export const licensePackage = async (options: LicensePackageOptions): Promise<vo
         appPackage.optionalDependencies = parent.optionalDependencies ?? {};
     }
 
-    if (typeof parent.bin === 'object') {
+    bin: if (typeof parent.bin === 'object') {
+
+        if (options.rawExecutable) {
+
+            appPackage.bin = parent.bin;
+            break bin;
+        }
 
         const commands: string[] = Object.keys(parent.bin);
 
